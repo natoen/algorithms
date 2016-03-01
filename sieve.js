@@ -12,5 +12,3 @@ function sieve(n) {
 
   return primes;
 };
-
-console.log(sieve(11));
