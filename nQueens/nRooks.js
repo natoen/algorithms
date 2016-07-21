@@ -1,23 +1,26 @@
 // See my N-Queens for a descriptive version.
 
-var nRooks = function(n) {
-  var count = 0;
-  var all = Math.pow(2,n) - 1;     
+function nRooks(n) {
+  let count = 0;
+  const all = Math.pow(2, n) - 1;
 
-  var Try = function(cols) {
-    if (cols == all)
+  function solve(cols) {
+    if (cols === all) {
       count++;
+    }
 
-    var poss = ~(cols) & all;
+    let poss = ~(cols) & all;
 
-    while (poss) { 
-      var bit = poss & -poss;
+    while (poss) {
+      const bit = poss & -poss;
 
       poss = poss ^ bit;
-      Try(cols|bit);
+      solve(cols | bit);
     }
-  };
+  }
 
-  Try(0, 0, 0);
-  console.log("There are " + count + " solutions to " + n + "-Rooks problem");
-};
+  solve(0, 0, 0);
+  // console.log(`There are ${count} solutions to ${n}-Rooks problem`);
+}
+
+nRooks(4);
