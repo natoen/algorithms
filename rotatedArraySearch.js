@@ -1,4 +1,30 @@
+const rotatedArraySearch = (rotated, target) => {
+  const lbp = rotated.length - 1;
+  const hbp = 0;
+  let min = rotated.length - 1 === rotated.indexOf(Math.min(...rotated)) ?
+    rotated.length - 1 : rotated.indexOf(Math.min(...rotated));
+  let max = min ? min - 1 : lbp;
 
+  if (target < rotated[lbp]) {
+    max = lbp;
+  } else {
+    min = hbp;
+  }
+
+  while (min <= max) {
+    const median = Math.floor((min + max) / 2);
+
+    if (target < rotated[median]) {
+      max = median - 1;
+    } else if (rotated[median] < target) {
+      min = median + 1;
+    } else {
+      return median;
+    }
+  }
+
+  return -1;
+};
 
 
 /*
@@ -27,4 +53,26 @@ target:
 100
 answer:
 -1
+
+rotated:
+[3, 4, 5, 6, 7, 1, 2];
+target:
+1
+answer:
+5
+
+rotated:
+[1, 2, 0];
+target:
+2
+answer:
+1
+
+rotated:
+[0];
+target:
+0
+answer:
+0
+
 */

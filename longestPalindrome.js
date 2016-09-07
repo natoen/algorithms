@@ -3,13 +3,8 @@ const longestPalindrome = (string) => {
   let result = '';
 
   for (let i = 0; i < string.length; i++) {
-    if (string.indexOf(flip.slice(i, 2)) > -1) {
-      for (let j = 3; j < string.length + 1; j++) {
-        if (string.indexOf(flip.slice(i, j)) === -1) {
-          break;
-        }
-        result = flip.slice(i, j).length > result.length ? flip.slice(i, j) : result;
-      }
+    for (let j = i + 2; string.includes(flip.slice(i, j)) && j < string.length + 1; j++) {
+      result = flip.slice(i, j).length > result.length ? flip.slice(i, j) : result;
     }
 
     if (result.length > flip.length - i) {
@@ -19,6 +14,9 @@ const longestPalindrome = (string) => {
 
   return result;
 };
+
+longestPalindrome('There was a tattarrattat on the racecar. It made a funny noise, gfedcbabcdefg');
+// ' tattarrattat '
 
 
 /*
