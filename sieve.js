@@ -20,7 +20,7 @@ function sieve(n) {
     }
   }
 
-  return array.filter((element) => element !== false);
+  return array.filter((element) => !!element);
 }
 
-sieve(20); // [ 2, 3, 5, 7, 11, 13, 17, 19 ]
+console.log(sieve(20)); // [ 2, 3, 5, 7, 11, 13, 17, 19 ]
