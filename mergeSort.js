@@ -1,4 +1,30 @@
+const mergeSort = (array) => {
+  if (array.length < 2) {
+    return array;
+  }
 
+  const left = mergeSort(array.slice(0, Math.floor(array.length / 2)));
+  const right = mergeSort(array.slice(Math.floor(array.length / 2)));
+  const result = [];
+
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      result.push(left.shift());
+    } else {
+      result.push(right.shift());
+    }
+  }
+
+  while (left.length) {
+    result.push(left.shift());
+  }
+
+  while (right.length) {
+    result.push(right.shift());
+  }
+
+  return result;
+};
 
 
 /*
